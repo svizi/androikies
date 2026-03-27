@@ -887,5 +887,12 @@
     });
   </script>
 
+  <script>
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('contextmenu', e => e.preventDefault());
+      img.setAttribute('draggable', 'false');
+    });
+  </script>
+
 </body>
 </html>
