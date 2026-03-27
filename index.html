@@ -394,6 +394,46 @@
     .nearby-name { color: var(--ink); }
     .nearby-dist { color: var(--sea); font-weight: 500; letter-spacing: 0.05em; }
 
+    /* ── HOW TO GET HERE ── */
+    .howtoget { background: var(--sand); }
+    .howtoget-intro { max-width: 560px; margin-bottom: 3.5rem; }
+    .howtoget-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .howtoget-card {
+      background: var(--white);
+      padding: 2rem;
+      border: 1px solid var(--border);
+    }
+    .howtoget-icon {
+      width: 36px;
+      height: 36px;
+      color: var(--sea);
+      margin-bottom: 1.2rem;
+    }
+    .howtoget-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+    .howtoget-card-body {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+    .howtoget-card-body a {
+      color: var(--sea);
+      text-decoration: none;
+    }
+    .howtoget-card-body a:hover { text-decoration: underline; }
+    @media (max-width: 900px) {
+      .howtoget-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── INSTAGRAM ── */
     .instagram { background: var(--white); }
     .instagram-header { text-align: center; margin-bottom: 3rem; }
@@ -591,6 +631,7 @@
       <li><a href="#about">The House</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#location">Location</a></li>
+      <li><a href="#howtoget">Getting Here</a></li>
     </ul>
     <a href="https://www.airbnb.com/rooms/670733615757784048" target="_blank" rel="noopener" class="nav-book">Book Now</a>
   </nav>
@@ -796,6 +837,58 @@
             allowfullscreen
           ></iframe>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO GET HERE -->
+  <section class="howtoget" id="howtoget">
+    <div class="container">
+      <div class="howtoget-intro">
+        <p class="section-label">Getting Here</p>
+        <h2 class="section-title">How to reach<br><em>Androikies</em></h2>
+        <div class="divider"></div>
+        <p class="section-body">Andros is one of the closest Cycladic islands to Athens — easy to reach by ferry from Rafina port, with several daily departures in summer.</p>
+      </div>
+      <div class="howtoget-grid">
+
+        <div class="howtoget-card">
+          <svg class="howtoget-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/>
+          </svg>
+          <div class="howtoget-card-title">From Athens</div>
+          <div class="howtoget-card-body">
+            Drive or take a bus to <strong>Rafina port</strong> (~30 min from Athens city centre, ~45 min from the airport).<br><br>
+            Ferries to Gavrio run several times daily. Journey time is approximately <strong>2 hours</strong> by fast ferry or <strong>2.5 hours</strong> by conventional ferry.<br><br>
+            Book tickets at <a href="https://www.ferryscanner.com" target="_blank" rel="noopener">ferryscanner.com</a> or <a href="https://www.bluestarferries.com" target="_blank" rel="noopener">bluestarferries.com</a>.
+          </div>
+        </div>
+
+        <div class="howtoget-card">
+          <svg class="howtoget-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 19V5m0 0l-4 4m4-4l4 4"/>
+            <rect x="3" y="17" width="18" height="4" rx="1" stroke-linecap="round"/>
+          </svg>
+          <div class="howtoget-card-title">By Air</div>
+          <div class="howtoget-card-body">
+            Andros has no airport. Fly into <strong>Athens International Airport (ATH)</strong>, then head to Rafina port for the ferry.<br><br>
+            Rafina is the closest port to the airport — only <strong>20–25 minutes</strong> by taxi or the Rafina–Airport bus.<br><br>
+            This makes it one of the easiest island connections from any international flight.
+          </div>
+        </div>
+
+        <div class="howtoget-card">
+          <svg class="howtoget-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 13l4.553 2.276A1 1 0 0021 21.382V10.618a1 1 0 00-.553-.894L15 7m0 13V7m0 0L9 4"/>
+          </svg>
+          <div class="howtoget-card-title">From Gavrio Port to the House</div>
+          <div class="howtoget-card-body">
+            Once you dock at <strong>Gavrio</strong>, Androikies Stone is just <strong>1.5 km away</strong> — a 3-minute drive towards Agios Petros beach.<br><br>
+            Taxis are available at the port. Renting a car is recommended for exploring the island — there are rental offices in Gavrio and Batsi.<br><br>
+            Exact directions will be shared upon booking confirmation.
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
