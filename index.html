@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Androikies Stone — Andros, Greece</title>
+  <meta name="description" content="Androikies Stone — a three-bedroom stone house near Agios Petros beach, Gavrio, Andros. Sea views, private terrace, steps from the sea." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --stone:   #c8bfb0;
+      --sand:    #f5f0e8;
+      --cream:   #faf8f4;
+      --white:   #ffffff;
+      --sea:     #3a7ca5;
+      --sea-dark:#2c5f80;
+      --ink:     #1e1e1e;
+      --muted:   #7a7268;
+      --border:  #e4ddd3;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 3rem;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(250, 248, 244, 0.96);
+      box-shadow: 0 1px 0 var(--border);
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.4s;
+    }
+    nav.scrolled .nav-logo { color: var(--ink); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--white); }
+    nav.scrolled .nav-links a:hover { color: var(--ink); }
+    .nav-book {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 0.55rem 1.4rem;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    nav.scrolled .nav-book { color: var(--sea); border-color: var(--sea); }
+    .nav-book:hover { background: var(--white); color: var(--ink); border-color: var(--white); }
+    nav.scrolled .nav-book:hover { background: var(--sea); color: var(--white); border-color: var(--sea); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: #2c4a5e;
+      /* Replace with: background-image: url('images/hero.jpg'); background-size: cover; background-position: center; */
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 100%);
+    }
+    .hero-content {
+      position: relative;
+      text-align: center;
+      color: var(--white);
+      padding: 0 1.5rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-bottom: 1.2rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 300;
+    }
+    .hero-subtitle {
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 2.8rem;
+    }
+    .hero-cta {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.6);
+      padding: 0.9rem 2.5rem;
+      text-decoration: none;
+      transition: all 0.35s;
+    }
+    .hero-cta:hover { background: var(--white); color: var(--ink); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .hero-scroll svg { width: 18px; opacity: 0.6; }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 7rem 0; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sea);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .section-title em { font-style: italic; }
+    .section-body {
+      font-size: 0.92rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.85;
+    }
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--stone);
+      margin: 1.5rem 0;
+    }
+
+    /* ── INTRO ── */
+    .intro { background: var(--white); }
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .intro-image {
+      aspect-ratio: 4/5;
+      background: var(--sand);
+      position: relative;
+      overflow: hidden;
+    }
+    .intro-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .intro-image-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.8rem;
+      color: var(--stone);
+    }
+    .intro-image-placeholder svg { width: 48px; opacity: 0.4; }
+    .intro-image-placeholder span {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ── GALLERY ── */
+    .gallery { background: var(--cream); }
+    .gallery-header { text-align: center; margin-bottom: 3rem; }
+    .gallery-header .section-body { margin: 0 auto; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: 280px 280px;
+      gap: 12px;
+    }
+    .gallery-item {
+      background: var(--sand);
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-item:nth-child(1) { grid-column: 1 / 7; grid-row: 1 / 2; }
+    .gallery-item:nth-child(2) { grid-column: 7 / 10; grid-row: 1 / 2; }
+    .gallery-item:nth-child(3) { grid-column: 10 / 13; grid-row: 1 / 2; }
+    .gallery-item:nth-child(4) { grid-column: 1 / 4; grid-row: 2 / 3; }
+    .gallery-item:nth-child(5) { grid-column: 4 / 7; grid-row: 2 / 3; }
+    .gallery-item:nth-child(6) { grid-column: 7 / 13; grid-row: 2 / 3; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.6rem;
+      color: var(--stone);
+    }
+    .gallery-placeholder svg { width: 36px; opacity: 0.35; }
+    .gallery-placeholder span {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    /* ── FEATURES ── */
+    .features { background: var(--white); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+    .feature-item { text-align: center; }
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 1.5rem;
+      color: var(--sea);
+    }
+    .feature-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.7rem;
+      color: var(--ink);
+    }
+    .feature-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ── AMENITIES ── */
+    .amenities { background: var(--sand); }
+    .amenities-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .amenities-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 2rem;
+      margin-top: 1.5rem;
+    }
+    .amenity-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .amenity-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--sea);
+      flex-shrink: 0;
+    }
+    .amenities-image {
+      aspect-ratio: 3/4;
+      background: var(--stone);
+      position: relative;
+      overflow: hidden;
+    }
+    .amenities-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── LOCATION ── */
+    .location { background: var(--white); }
+    .location-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .location-map {
+      aspect-ratio: 1;
+      background: var(--sand);
+      position: relative;
+      overflow: hidden;
+    }
+    .location-map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    .nearby-list { margin-top: 2rem; }
+    .nearby-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.82rem;
+    }
+    .nearby-item:first-child { border-top: 1px solid var(--border); }
+    .nearby-name { color: var(--ink); }
+    .nearby-dist { color: var(--sea); font-weight: 500; letter-spacing: 0.05em; }
+
+    /* ── INSTAGRAM ── */
+    .instagram { background: var(--white); }
+    .instagram-header { text-align: center; margin-bottom: 3rem; }
+    .instagram-handle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      margin-top: 0.6rem;
+      transition: color 0.3s;
+    }
+    .instagram-handle:hover { color: var(--ink); }
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 3rem;
+    }
+    .instagram-item {
+      aspect-ratio: 1;
+      overflow: hidden;
+      position: relative;
+      display: block;
+      background: var(--sand);
+    }
+    .instagram-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .instagram-item:hover img { transform: scale(1.06); }
+    .instagram-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    .instagram-item:hover .instagram-item-overlay { background: rgba(0,0,0,0.28); }
+    .instagram-item-overlay svg {
+      width: 28px;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .instagram-item:hover .instagram-item-overlay svg { opacity: 1; }
+    .instagram-follow { text-align: center; }
+    .instagram-follow a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border: 1px solid var(--ink);
+      padding: 0.9rem 2.2rem;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .instagram-follow a:hover { background: var(--ink); color: var(--white); }
+    .instagram-follow a svg { width: 16px; }
+
+    .instagram-item:nth-child(5) { display: none; }
+
+    @media (max-width: 700px) {
+      .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+      .instagram-item:nth-child(n+4) { display: none; }
+    }
+
+    /* ── BOOKING BANNER ── */
+    .booking-banner {
+      background: var(--sea-dark);
+      padding: 6rem 0;
+      text-align: center;
+    }
+    .booking-banner .section-label { color: rgba(255,255,255,0.5); }
+    .booking-banner .section-title { color: var(--white); margin: 0 auto 1.2rem; }
+    .booking-banner .section-body { color: rgba(255,255,255,0.65); margin: 0 auto 3rem; text-align: center; }
+    .btn-primary {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sea-dark);
+      background: var(--white);
+      padding: 1rem 2.8rem;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+    .btn-primary:hover { background: var(--sand); }
+    .btn-outline {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.45);
+      padding: 1rem 2.8rem;
+      text-decoration: none;
+      transition: all 0.3s;
+      margin-left: 1rem;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.5);
+      padding: 4rem 0 2.5rem;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 2rem;
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .footer-tagline { font-size: 0.78rem; line-height: 1.8; }
+    .footer-col-title {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 1.2rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-contact-item { font-size: 0.82rem; margin-bottom: 0.6rem; }
+    .footer-contact-item a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.3s; }
+    .footer-contact-item a:hover { color: var(--white); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.7rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      .intro-grid,
+      .amenities-inner,
+      .location-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .intro-image { aspect-ratio: 16/9; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-item { aspect-ratio: 4/3; }
+      .gallery-item:nth-child(n) { grid-column: auto; grid-row: auto; }
+      .gallery-item:nth-child(1) { grid-column: 1 / 3; }
+      .features-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 5rem 0; }
+      .stats { flex-wrap: wrap; gap: 1.5rem; }
+      .amenities-list { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item:nth-child(n) { grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">Androikies</a>
+    <ul class="nav-links">
+      <li><a href="#about">The House</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#location">Location</a></li>
+    </ul>
+    <a href="https://www.airbnb.com/rooms/670733615757784048" target="_blank" rel="noopener" class="nav-book">Book Now</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="images/hero.jpg" alt="Androikies Stone — terrace with sea view" style="width:100%;height:100%;object-fit:cover;object-position:center;">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Andros Island, Greece</p>
+      <h1 class="hero-title">Androikies<br><em>Stone</em></h1>
+      <p class="hero-subtitle">Gavrio &nbsp;·&nbsp; Agios Petros Beach</p>
+    </div>
+    <div class="hero-scroll">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- INTRO / ABOUT -->
+  <section class="intro" id="about">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-image">
+          <img src="images/exterior.jpg" alt="Androikies Stone stone facade">
+        </div>
+        <div class="intro-text">
+          <p class="section-label">The House</p>
+          <h2 class="section-title">A stone home,<br><em>above the Aegean</em></h2>
+          <div class="divider"></div>
+          <p class="section-body">
+            Androikies Stone is a traditional two-storey stone house nestled on the hillside above Agios Petros beach, just outside Gavrio. With three bedrooms, two bathrooms and a generous terrace framing uninterrupted sea views, it offers everything you need to slow down and settle into island life.
+          </p>
+          <p class="section-body" style="margin-top: 1rem;">
+            The house is faithful to the architecture of Andros — thick stone walls that stay cool in summer, arched doorways, and raw natural textures — updated with the comfort and light you want on holiday.
+          </p>
+          <div class="stats">
+            <div>
+              <div class="stat-number">3</div>
+              <div class="stat-label">Bedrooms</div>
+            </div>
+            <div>
+              <div class="stat-number">2</div>
+              <div class="stat-label">Bathrooms</div>
+            </div>
+            <div>
+              <div class="stat-number">2</div>
+              <div class="stat-label">Floors</div>
+            </div>
+            <div>
+              <div class="stat-number">400m</div>
+              <div class="stat-label">To the beach</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="gallery-header">
+        <p class="section-label">Gallery</p>
+        <h2 class="section-title">Inside &amp; out</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/gallery-sea.jpg" alt="Sea view from Androikies Stone">
+        </div>
+        <div class="gallery-item">
+          <img src="images/gallery-living.jpg" alt="Living and dining room">
+        </div>
+        <div class="gallery-item">
+          <img src="images/gallery-kitchen.jpg" alt="Fully equipped kitchen">
+        </div>
+        <div class="gallery-item">
+          <img src="images/gallery-bedroom.jpg" alt="Master bedroom">
+        </div>
+        <div class="gallery-item">
+          <img src="images/gallery-shutters.jpg" alt="Sea view through shutters">
+        </div>
+        <div class="gallery-item">
+          <img src="images/gallery-exterior.jpg" alt="Stone exterior at sunset">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="container">
+      <div style="text-align:center; margin-bottom: 1rem;">
+        <p class="section-label">Why Androikies Stone</p>
+        <h2 class="section-title">What makes it special</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Sea Views</h3>
+          <p class="feature-desc">Wake up to the deep blue of the Aegean. The terrace and upper-floor bedrooms frame an unobstructed view of the sea and the bay of Gavrio.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Steps from the Beach</h3>
+          <p class="feature-desc">Agios Petros is one of Andros's most beloved sandy beaches, just 1.2 km away. The nearest beach is only 400 m on foot — no car needed for your morning swim.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 9.5L12 3l9 6.5V21H3V9.5z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 21V12h6v9"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Authentic Stone Architecture</h3>
+          <p class="feature-desc">Built in the traditional Andriot style — thick stone walls, terracotta details and two spacious floors that breathe in the island heat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMENITIES -->
+  <section class="amenities" id="amenities">
+    <div class="container">
+      <div class="amenities-inner">
+        <div>
+          <p class="section-label">Amenities</p>
+          <h2 class="section-title">Everything<br><em>you need</em></h2>
+          <div class="divider"></div>
+          <p class="section-body">Androikies Stone is set up for a comfortable, unhurried stay — from a fully equipped kitchen for long, lazy lunches to the shaded terrace made for evening wine.</p>
+          <div class="amenities-list">
+            <div class="amenity-item"><span class="amenity-dot"></span>3 Bedrooms</div>
+            <div class="amenity-item"><span class="amenity-dot"></span>2 Bathrooms</div>
+            <div class="amenity-item"><span class="amenity-dot"></span>Sea-view terrace</div>
+            <div class="amenity-item"><span class="amenity-dot"></span>Fully equipped kitchen</div>
+            <div class="amenity-item"><span class="amenity-dot"></span>Air conditioning</div>
+            <div class="amenity-item"><span class="amenity-dot"></span>Wi-Fi</div>
+            <div class="amenity-item"><span class="amenity-dot"></span>Outdoor dining area</div>
+            <div class="amenity-item"><span class="amenity-dot"></span>Washing machine</div>
+            <div class="amenity-item"><span class="amenity-dot"></span>Beach gear</div>
+            <div class="amenity-item"><span class="amenity-dot"></span>Two-storey layout</div>
+          </div>
+        </div>
+        <div class="amenities-image">
+          <img src="images/amenities.jpg" alt="Terrace at Androikies Stone">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location" id="location">
+    <div class="container">
+      <div class="location-inner">
+        <div>
+          <p class="section-label">Location</p>
+          <h2 class="section-title">Gavrio &amp;<br><em>Agios Petros</em></h2>
+          <div class="divider"></div>
+          <p class="section-body">
+            Gavrio is the main port of Andros — lively, unpretentious and perfectly placed for exploring the island. Androikies Stone sits just outside town, right by the long sandy stretch of Agios Petros, one of the finest beaches on the island.
+          </p>
+          <div class="nearby-list">
+            <div class="nearby-item">
+              <span class="nearby-name">Nearest beach (on foot)</span>
+              <span class="nearby-dist">400 m</span>
+            </div>
+            <div class="nearby-item">
+              <span class="nearby-name">Agios Petros Beach</span>
+              <span class="nearby-dist">1.2 km</span>
+            </div>
+            <div class="nearby-item">
+              <span class="nearby-name">Gavrio Town</span>
+              <span class="nearby-dist">1.2 km</span>
+            </div>
+            <div class="nearby-item">
+              <span class="nearby-name">Batsi Village</span>
+              <span class="nearby-dist">7 km</span>
+            </div>
+            <div class="nearby-item">
+              <span class="nearby-name">Andros Chora (capital)</span>
+              <span class="nearby-dist">32 km</span>
+            </div>
+          </div>
+        </div>
+        <div class="location-map">
+          <iframe
+            src="https://maps.google.com/maps?q=37.8835347,24.7476305&z=14&t=h&output=embed"
+            title="Androikies Stone — Agios Petros Beach, Gavrio, Andros"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="instagram">
+    <div class="container">
+      <div class="instagram-header">
+        <p class="section-label">Instagram</p>
+        <h2 class="section-title">Follow our story</h2>
+        <a href="https://www.instagram.com/androikies/" target="_blank" rel="noopener" class="instagram-handle">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" width="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          @androikies
+        </a>
+      </div>
+      <div class="instagram-grid">
+        <a class="instagram-item" href="https://www.instagram.com/androikies/p/CgCkwDMqF8w/" target="_blank" rel="noopener">
+          <div class="instagram-item-overlay" style="background:var(--sand);opacity:1;flex-direction:column;gap:0.5rem;">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2" style="opacity:0.3;color:var(--ink)"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            <span style="font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone);">Save as ig-1.jpg</span>
+          </div>
+        </a>
+        <a class="instagram-item" href="https://www.instagram.com/androikies/p/CgAC1v-KGKo/" target="_blank" rel="noopener">
+          <div class="instagram-item-overlay" style="background:var(--sand);opacity:1;flex-direction:column;gap:0.5rem;">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2" style="opacity:0.3;color:var(--ink)"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            <span style="font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone);">Save as ig-2.jpg</span>
+          </div>
+        </a>
+        <a class="instagram-item" href="https://www.instagram.com/androikies/p/Cs38_wnIpK2/" target="_blank" rel="noopener">
+          <div class="instagram-item-overlay" style="background:var(--sand);opacity:1;flex-direction:column;gap:0.5rem;">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2" style="opacity:0.3;color:var(--ink)"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            <span style="font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone);">Save as ig-3.jpg</span>
+          </div>
+        </a>
+        <a class="instagram-item" href="https://www.instagram.com/androikies/p/Cs3-MUBI874/" target="_blank" rel="noopener">
+          <div class="instagram-item-overlay" style="background:var(--sand);opacity:1;flex-direction:column;gap:0.5rem;">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2" style="opacity:0.3;color:var(--ink)"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            <span style="font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone);">Save as ig-4.jpg</span>
+          </div>
+        </a>
+        <a class="instagram-item" href="https://www.instagram.com/androikies/p/Cs3-KzTIzjf/" target="_blank" rel="noopener">
+          <div class="instagram-item-overlay" style="background:var(--sand);opacity:1;flex-direction:column;gap:0.5rem;">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2" style="opacity:0.3;color:var(--ink)"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            <span style="font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone);">Save as ig-5.jpg</span>
+          </div>
+        </a>
+      </div>
+      <p style="text-align:center;font-size:0.78rem;color:var(--muted);margin-top:2rem;">&copy; All photos and texts are copyright protected.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">Androikies</div>
+          <p class="footer-tagline">Three stone houses on the island of Andros, Greece.<br>Stays designed for rest, sea, and slowness.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigate</div>
+          <ul class="footer-links">
+            <li><a href="#about">The House</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#amenities">Amenities</a></li>
+            <li><a href="#location">Location</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-contact-item"><a href="mailto:your@email.com">your@email.com</a></div>
+          <div class="footer-contact-item"><a href="tel:+30000000000">+30 000 000 0000</a></div>
+          <div class="footer-contact-item" style="margin-top:1rem;">
+            <a href="https://www.airbnb.com/rooms/670733615757784048" target="_blank" rel="noopener">Airbnb Listing ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 Androikies. Andros, Greece.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+  </script>
+
+</body>
+</html>
